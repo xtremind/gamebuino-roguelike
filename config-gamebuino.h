@@ -1,1 +1,4 @@
 #define DISPLAY_MODE DISPLAY_MODE_INDEX //160x128	
+
+#define DEBUG 
+#define NOSOUND

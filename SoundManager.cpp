@@ -11,5 +11,7 @@ void SoundManager::openChest(){
 
 }
 void SoundManager::walk(){
+  #ifndef NOSOUND
   gb.sound.playTick();
+  #endif 
 }
