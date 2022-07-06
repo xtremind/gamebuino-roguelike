@@ -1,9 +1,9 @@
 #include "Character.h"
 
-Character::Character(CharacterType _type)
+Character::Character(const int _x, const int _y, const CharacterType _type)
 {
-  x = 1;
-  y = 1;
+  x = _x;
+  y = _y;
   offset_x = 0;
   offset_y = 0;
 

@@ -26,8 +26,17 @@ void draw_hero()
 
 void draw_mobs()
 {
-  gb.display.drawImage(1 * WIDTH_BLOCK, 7 * HEIGHT_BLOCK , SpriteManager::getSlime(), 1*WIDTH_BLOCK, HEIGHT_BLOCK);
+  int nb = Cache::nbMobs();
+  //gb.display.print(nb);
+  for(int i = 0; i < nb; i++){
+    draw_mob(Cache::getMob(i));
+  }
 }
+
+void draw_mob(Character* mob){
+  gb.display.drawImage(mob->getX() * WIDTH_BLOCK + mob->getOffsetX(), mob->getY() * HEIGHT_BLOCK + mob->getOffsetY(), SpriteManager::getSlime(), mob->getFlip()*WIDTH_BLOCK, HEIGHT_BLOCK);
+}
+
 
 void draw_floor()
 {

@@ -123,11 +123,11 @@ https://www.youtube.com/watch?v=HnY7Inp74dw&list=TLPQMzEwNTIwMjJoeOrm41Og6A&inde
 
 - [ ] TILES : draw a monster : slime (4 frames to animate, with up/down head animation)
 - [ ] DRAW GAME : display slime
-- [ ] 
+- [ ] MOB : create a list than contain mobs
+- [ ] MOB : create a function to add a mob
+- [ ] DRAW GAME : draw mob from list
 
 ([video](https://youtu.be/rjWxDQcYUwo) / [code](pico8/08_monsters.lua))
-
-
 
 ### Step 
 

@@ -15,6 +15,8 @@ void draw_gameover();
 
 void draw_hero();
 void draw_mobs();
+void draw_mob(Character* mob);
+
 void draw_floor();
 void draw_textboxes();
 void draw_textbox(Message* message );

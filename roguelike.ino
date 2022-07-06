@@ -11,6 +11,14 @@ void setup()
   //_drw = &draw_start;
   Cache::_upd = &update_game;
   Cache::_drw = &draw_game;
+  // init game
+
+  Character* mob = new Character(9,2,CharacterType::SLIME);
+  Cache::addMob(mob);
+  mob = new Character(2,6,CharacterType::SLIME);
+  Cache::addMob(mob);
+  mob = new Character(2,2,CharacterType::SLIME);
+  Cache::addMob(mob);
 
   SerialUSB.begin(9600);
 }

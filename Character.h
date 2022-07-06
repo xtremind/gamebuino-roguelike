@@ -39,7 +39,7 @@ private:
   void doBump();
 
 public:
-  Character(CharacterType _type);
+  Character(const int _x, const int _y, const CharacterType _type);
   const int getX() const;
   const int getY() const;
   const int getOffsetX() const;

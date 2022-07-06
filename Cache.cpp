@@ -1,14 +1,12 @@
 #include "Cache.h"
 
-
-int Cache::nbCharacters = 0;;
-Floor *Cache::flr = new Floor();
-Character *Cache::hero = new Character(CharacterType::HERO);
-Message *Cache::message = NULL;
-
 void (*Cache::_upd)();
 void (*Cache::_drw)();
 
+Floor *Cache::flr = new Floor();
+Character *Cache::hero = new Character(1,1,CharacterType::HERO);
+
+Message *Cache::message = NULL;
 
 void Cache::addMessage(Message *newMessage){
   if(Cache::message == NULL) {
@@ -16,12 +14,12 @@ void Cache::addMessage(Message *newMessage){
     return;
   }
 
-    Message *nextMessage = Cache::message->next;
+    Message *nextMessage = Cache::message;
 
-  while (nextMessage != NULL){
+  while (nextMessage->next != NULL){
     nextMessage = nextMessage->next;
   }
-  nextMessage = newMessage;
+  nextMessage->next = newMessage;
 }
 
 Message* Cache::getCurrentMessage(){
@@ -32,4 +30,52 @@ void Cache::deleteCurrentMessage(){
   if(Cache::message != NULL) {
     Cache::message = Cache::message->next;
   }
+}
+
+
+Mobs *Cache::mobs = NULL;
+int Cache::nbMob = 0;
+
+void Cache::addMob(Character *mob){
+  
+  Mobs *newMob = new Mobs();
+  newMob->mob = mob;
+
+  if(Cache::mobs == NULL) {
+    Cache::mobs = newMob;
+    Cache::nbMob = 1;
+    return;
+  }
+
+  Mobs *nextMob = Cache::mobs;
+
+  while (nextMob->next != NULL){
+    nextMob = nextMob->next;
+  }
+
+  nextMob->next = newMob;
+  Cache::nbMob++;
+}
+
+Character* Cache::getMob(int pos){
+  int i = 0;
+  Mobs *buffer = Cache::mobs;
+  while (buffer != NULL && i <= pos ){
+    if (i == pos){
+      return buffer->mob;
+    }
+    buffer = buffer->next;
+    i++;
+  }
+
+  return NULL;
+}
+
+int Cache::nbMobs(){
+  return Cache::nbMob;
+}
+
+void Cache::resetMob(){
+  Cache::mobs = NULL;
+  Cache::nbMob = 0;
 }
