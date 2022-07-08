@@ -7,22 +7,10 @@ void draw_start()
 void draw_game()
 {
   draw_floor();
-  draw_hero();
   draw_mobs();
   draw_textboxes();
   //draw ui
 }
-
-void draw_hero()
-{
-  //DEBUG 
-  Character *hero = Cache::hero;
-  //gb.display.drawImage(hero->getX() * WIDTH_BLOCK , hero->getY() * HEIGHT_BLOCK , SpriteManager::getHero());
-  gb.display.drawImage(hero->getX() * WIDTH_BLOCK + hero->getOffsetX(), hero->getY() * HEIGHT_BLOCK + hero->getOffsetY(), SpriteManager::getHero(), hero->getFlip()*WIDTH_BLOCK, HEIGHT_BLOCK);
-  //DEBUG
-  //gb.display.print(hero->getOffsetX());
-}
-
 
 void draw_mobs()
 {
@@ -34,18 +22,24 @@ void draw_mobs()
 }
 
 void draw_mob(Character* mob){
-  gb.display.drawImage(mob->getX() * WIDTH_BLOCK + mob->getOffsetX(), mob->getY() * HEIGHT_BLOCK + mob->getOffsetY(), SpriteManager::getSlime(), mob->getFlip()*WIDTH_BLOCK, HEIGHT_BLOCK);
+  gb.display.drawImage(mob->getX() * WIDTH_BLOCK + mob->getOffsetX(), mob->getY() * HEIGHT_BLOCK + mob->getOffsetY(), getSprite(mob->getType()), mob->getFlip()*WIDTH_BLOCK, HEIGHT_BLOCK);
 }
 
+Image& getSprite(CharacterType type){
+  switch (type)
+  {
+  case CharacterType::HERO:
+    return SpriteManager::getHero();
+  case CharacterType::SLIME:
+    return SpriteManager::getSlime();
+  }
+}
 
 void draw_floor()
 {
   Floor *flr = Cache::flr;
-  for (int y = 0; y < flr->HEIGHT_MAP; y++)
-  {
-    for (int x = 0; x < flr->WIDTH_MAP; x++)
-    {
-      // draw the map from model
+  for (int y = 0; y < flr->HEIGHT_MAP; y++) {
+    for (int x = 0; x < flr->WIDTH_MAP; x++) {
       paintSprite(x, y, flr->get(x, y));
     }
   }
@@ -55,40 +49,31 @@ void paintSprite(const int x, const int y, const char typeOfSprites)
 {
   switch (typeOfSprites)
   {
-  case Tiles::FLOOR_TYPE: // background
-    // paintBlock(x, y, GREEN);
+  case Tiles::FLOOR_TYPE:
     gb.display.drawImage(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, SpriteManager::getFloor());
     break;
-  case Tiles::START_TYPE: // starting point
-    //paintBlock(x, y, RED);
+  case Tiles::START_TYPE:
     gb.display.drawImage(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, SpriteManager::getStart());
     break;
-  case Tiles::DESTINATION_TYPE: // end point
-    //paintBlock(x, y, PINK);
+  case Tiles::DESTINATION_TYPE:
     gb.display.drawImage(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, SpriteManager::getEnd());
     break;
-  case Tiles::DOOR_TYPE: // door
-    //paintBlock(x, y, YELLOW);
+  case Tiles::DOOR_TYPE:
     gb.display.drawImage(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, SpriteManager::getDoor());
     break;
-  case Tiles::WALL_TYPE: // wall
-    //paintBlock(x, y, BLUE);
+  case Tiles::WALL_TYPE:
     gb.display.drawImage(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, SpriteManager::getWall());
     break;
-  case Tiles::JAR_TYPE: // wall
-    //paintBlock(x, y, BLUE);
+  case Tiles::JAR_TYPE:
     gb.display.drawImage(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, SpriteManager::getJar());
     break;
-  case Tiles::PANEL_TYPE: // wall
-    //paintBlock(x, y, BLUE);
+  case Tiles::PANEL_TYPE:
     gb.display.drawImage(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, SpriteManager::getPanel());
     break;
-  case Tiles::CLOSED_CHEST_TYPE: // wall
-    //paintBlock(x, y, BLUE);
+  case Tiles::CLOSED_CHEST_TYPE:
     gb.display.drawImage(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, SpriteManager::getClosedChest());
     break;
-  case Tiles::OPENED_CHEST_TYPE: // wall
-    //paintBlock(x, y, BLUE);
+  case Tiles::OPENED_CHEST_TYPE:
     gb.display.drawImage(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, SpriteManager::getOpenedChest());
     break;
   }
@@ -97,17 +82,6 @@ void paintSprite(const int x, const int y, const char typeOfSprites)
 void draw_gameover()
 {
 }
-
-void paintBlock(const int x, const int y, const Color color)
-{
-  gb.display.setColor(color);
-  gb.display.fillRect(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, WIDTH_BLOCK, HEIGHT_BLOCK);
-  gb.display.setColor(BLACK);
-  gb.display.drawLine(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, x * WIDTH_BLOCK + WIDTH_BLOCK, y * HEIGHT_BLOCK);
-  gb.display.drawLine(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, x * WIDTH_BLOCK, y * HEIGHT_BLOCK + HEIGHT_BLOCK);
-  // gb.display.drawRect(x * WIDTH_BLOCK, y * HEIGHT_BLOCK, WIDTH_BLOCK, HEIGHT_BLOCK);
-}
-
 
 void  draw_textboxes(){
   Message *message = Cache::getCurrentMessage();

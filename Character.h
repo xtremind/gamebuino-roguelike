@@ -44,6 +44,7 @@ public:
   const int getY() const;
   const int getOffsetX() const;
   const int getOffsetY() const;
+  const CharacterType getType() const;
 
   const int getFlip() const;
 

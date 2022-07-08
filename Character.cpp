@@ -32,6 +32,11 @@ const int Character::getOffsetY() const
   return offset_y;
 }
 
+const CharacterType Character::getType() const
+{
+  return type;
+}
+
 const int Character::getFlip() const
 {
   return flip;

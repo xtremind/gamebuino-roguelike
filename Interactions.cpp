@@ -2,14 +2,15 @@
 
 char* text[] = { "Welcome to ", "the game"};
 
-void interact(Character *hero, Floor *flr)
+void interact(Character *hero)
 {
+  Floor *flr = Cache::flr;
   char tile = flr->get(hero->getNextX(), hero->getNextY());
-  //gb.display.print(tile);
-  // compute event depending on tile
-  if(Tiles::isSolid(tile) || flr->isOutside(hero->getNextX(), hero->getNextY())){
+  if(Tiles::isSolid(tile) || flr->isOutside(hero->getNextX(), hero->getNextY()))
+  {
     hero->setAction(Action::BUMP);
-    if(Tiles::isInteractive(tile)){
+    if(Tiles::isInteractive(tile))
+    {
       switch (tile)
       {
       case Tiles::DOOR_TYPE:
@@ -37,8 +38,18 @@ void interact(Character *hero, Floor *flr)
         break;
       }
     }
-  } else {
-    hero->setAction(Action::MOVE);
-        SoundManager::walk();
+  }
+  else 
+  {
+    Character* mob = Cache::getMobByPos(hero->getNextX(), hero->getNextY());
+    if (mob != NULL){
+      hero->setAction(Action::BUMP);
+      //attack mob
+    }
+    else 
+    {
+      hero->setAction(Action::MOVE);
+      SoundManager::walk();
+    }
   }
 }

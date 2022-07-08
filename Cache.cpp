@@ -3,9 +3,12 @@
 void (*Cache::_upd)();
 void (*Cache::_drw)();
 
-Floor *Cache::flr = new Floor();
-Character *Cache::hero = new Character(1,1,CharacterType::HERO);
+//-------------- COMMON -----------------------
 
+Floor *Cache::flr = new Floor();
+Character *Cache::hero = NULL;
+
+//-------------- MESSAGES -----------------------
 Message *Cache::message = NULL;
 
 void Cache::addMessage(Message *newMessage){
@@ -32,7 +35,7 @@ void Cache::deleteCurrentMessage(){
   }
 }
 
-
+//-------------- MOBS -----------------------
 Mobs *Cache::mobs = NULL;
 int Cache::nbMob = 0;
 
@@ -66,6 +69,19 @@ Character* Cache::getMob(int pos){
     }
     buffer = buffer->next;
     i++;
+  }
+
+  return NULL;
+}
+
+
+Character* Cache::getMobByPos(int x, int y){
+  Mobs *buffer = Cache::mobs;
+  while (buffer != NULL ){
+    if (buffer->mob->getX() == x && buffer->mob->getY() == y){
+      return buffer->mob;
+    }
+    buffer = buffer->next;
   }
 
   return NULL;

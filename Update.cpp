@@ -3,7 +3,6 @@
 
 int button_buffer = -1;
 
-
 void update_start()
 {
   //DEBUG gb.display.print("start ");
@@ -20,11 +19,11 @@ int detectButton(){
   return -1;
 }
 
-void doButton(){
+void doButton()
+{
   Character *hero = Cache::hero;
-  Floor *flr = Cache::flr;
   hero->wantToGo(button_buffer);
-  interact(hero, flr);
+  interact(hero);
   hero->computeNextAction();
   button_buffer = -1;
 }

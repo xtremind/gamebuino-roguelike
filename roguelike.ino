@@ -13,6 +13,8 @@ void setup()
   Cache::_drw = &draw_game;
   // init game
 
+  Cache::hero = new Character(1,1,CharacterType::HERO);
+  Cache::addMob(Cache::hero);
   Character* mob = new Character(9,2,CharacterType::SLIME);
   Cache::addMob(mob);
   mob = new Character(2,6,CharacterType::SLIME);

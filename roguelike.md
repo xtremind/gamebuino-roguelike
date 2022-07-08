@@ -129,6 +129,22 @@ https://www.youtube.com/watch?v=HnY7Inp74dw&list=TLPQMzEwNTIwMjJoeOrm41Og6A&inde
 
 ([video](https://youtu.be/rjWxDQcYUwo) / [code](pico8/08_monsters.lua))
 
+### Step : Mob System
+
+- [ ] CHARACTER : use it to define a mob
+- [ ] MOB : create multiple mob
+- [ ] MOB : create a function to create a mob on a certain position
+- [ ] INTERACTION : create a function to determine if a position is walkable
+- [ ] INTERACTION : create a function to determine if a position is in bound
+- [ ] INTERACTION : create a function to retreive a mob from a position if existing
+- [ ] INTERACTION : do bump when hitting a mob
+- [ ] INTERACTION : create a empty function to that will attack a mob
+- [ ] GLOBAL : make p_timer a global variable
+  - [ ] DRAW IMPROVEMENT : current mob is displayed as last (top)
+
+
+([video](https://youtu.be/CSIHQElMdF0) / [code](pico8/09_mob_system.lua))
+
 ### Step 
 
 - [ ] 

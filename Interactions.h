@@ -10,6 +10,6 @@
 
 #include "SoundManager.h"
 
-void interact(Character *hero, Floor *flr);
+void interact(Character *hero);
 
 #endif
