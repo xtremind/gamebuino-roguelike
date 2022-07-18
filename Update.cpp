@@ -2,6 +2,7 @@
 #include "Cache.h"
 
 int button_buffer = -1;
+float timer_offset = 0;
 
 void update_start()
 {
@@ -25,6 +26,9 @@ void doButton()
   hero->wantToGo(button_buffer);
   interact(hero);
   hero->computeNextAction();
+  if(hero->needToMove()){
+    timer_offset = 0.0f;
+  }
   button_buffer = -1;
 }
 
@@ -55,13 +59,14 @@ void update_game()
 
 void update_hturn()
 {
+  timer_offset = min(timer_offset + SPEED, 1.0f);
   Character *hero = Cache::hero;
   if(button_buffer == -1){
     button_buffer = detectButton();
   }
-  hero->doAction();
+  hero->doAction(timer_offset);
 
-  if(!hero->needToMove()){
+  if(timer_offset == 1.0f){
     hero->setAction(Action::NONE);
       Cache::_upd = &update_game;
   }
@@ -70,5 +75,5 @@ void update_hturn()
 void update_gameover()
 {
   //DEBUG gb.display.print("gameover ");
-      Cache::_upd = &update_gameover;
+  Cache::_upd = &update_gameover;
 }

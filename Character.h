@@ -25,8 +25,6 @@ private:
   int start_offset_x;
   int start_offset_y;
 
-  float timer_offset;
-
   int direction;
   Action action;
   CharacterType type;
@@ -35,8 +33,8 @@ private:
   void prepareMove();
   void prepareBump();
   
-  void doMove();
-  void doBump();
+  void doMove(float timer_offset);
+  void doBump(float timer_offset);
 
 public:
   Character(const int _x, const int _y, const CharacterType _type);
@@ -53,7 +51,7 @@ public:
   const int getNextY();
   void setAction(Action _action);
   void computeNextAction();
-  void doAction();
+  void doAction(float timer_offset);
   bool needToMove();
 };
 

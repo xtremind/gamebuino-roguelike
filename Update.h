@@ -4,6 +4,7 @@
 #include <Gamebuino-Meta.h>
 
 #include "Cache.h"
+#include "Constants.h"
 #include "Interactions.h"
 
 void update_start();

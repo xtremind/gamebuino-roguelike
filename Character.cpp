@@ -103,8 +103,6 @@ void Character::prepareMove()
 
   start_offset_x = offset_x;
   start_offset_y = offset_y;
-
-  timer_offset = 0;
 }
 
 void Character::prepareBump()
@@ -115,20 +113,17 @@ void Character::prepareBump()
 
   start_offset_x = DIRECTION_X[direction] * WIDTH_BLOCK;
   start_offset_y = DIRECTION_Y[direction] * HEIGHT_BLOCK;
-  
-  timer_offset = 0;
 }
 
-void Character::doAction()
+void Character::doAction(float timer_offset)
 {
-  timer_offset = min(timer_offset + SPEED, 1.0f);
   switch (action)
   {
   case Action::MOVE:
-    this->doMove();
+    this->doMove(timer_offset);
     break;
   case Action::BUMP:
-    this->doBump();
+    this->doBump(timer_offset);
     break;
   default:
     break;
@@ -136,13 +131,13 @@ void Character::doAction()
 }
 
 
-void Character::doMove()
+void Character::doMove(float timer_offset)
 {
   offset_x = (int)(start_offset_x * (1 - timer_offset));
   offset_y = (int)(start_offset_y * (1 - timer_offset));
 }
 
-void Character::doBump(){
+void Character::doBump(float timer_offset){
   float tmp = timer_offset;
 
   if(timer_offset > 0.5f){
@@ -155,5 +150,5 @@ void Character::doBump(){
 
 bool Character::needToMove()
 {
-  return timer_offset != 1.0f;
+  return action != Action::NONE;
 }
