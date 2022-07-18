@@ -129,7 +129,7 @@ https://www.youtube.com/watch?v=HnY7Inp74dw&list=TLPQMzEwNTIwMjJoeOrm41Og6A&inde
 
 ([video](https://youtu.be/rjWxDQcYUwo) / [code](pico8/08_monsters.lua))
 
-### Step : Mob System
+### Step 9 : Mob System
 
 - [ ] CHARACTER : use it to define a mob
 - [ ] MOB : create multiple mob
@@ -140,12 +140,23 @@ https://www.youtube.com/watch?v=HnY7Inp74dw&list=TLPQMzEwNTIwMjJoeOrm41Og6A&inde
 - [ ] INTERACTION : do bump when hitting a mob
 - [ ] INTERACTION : create a empty function to that will attack a mob
 - [ ] GLOBAL : make p_timer a global variable
-  - [ ] DRAW IMPROVEMENT : current mob is displayed as last (top)
-
 
 ([video](https://youtu.be/CSIHQElMdF0) / [code](pico8/09_mob_system.lua))
 
-### Step 
+### Step 10 : Combat
+
+- [ ] CHARACTER : add attack / current energy / max energy depending on type
+- [ ] INTERACTION : create a function that will reduce the energy from the mob depending of the atteck
+- [ ] CHARACTER : create a function that will determine if it's dead (HP <= 0)
+- [ ] INTERACTION : create a function that delete a mob if killed
+- [ ] INTERACTION : create a function that will change the color of the attacked mob if attacked to white
+- [ ] SOUND : create "attack a mob" sound
+- [ ] SOUND : create "been hit" sound
+- [ ] INTERACTION : create a function that show the reduce of life upper the mob
+
+([video](https://youtu.be/FvSLsmTCIO4) / [code](pico8/10_combat.lua))
+
+### Step : 
 
 - [ ] 
 - [ ] 
@@ -156,3 +167,4 @@ https://www.youtube.com/watch?v=HnY7Inp74dw&list=TLPQMzEwNTIwMjJoeOrm41Og6A&inde
 
 - [libresprite - draw in pixel art](https://libresprite.github.io/#!/)
 - [example of pixel arts monsters](https://twitter.com/kirai_s/status/812824701533728770)
+- 
