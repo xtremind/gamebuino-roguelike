@@ -11,5 +11,8 @@
 #include "SoundManager.h"
 
 void interact(Character *hero);
+bool hasInteractedWithFloor(Character *hero);
+bool hasInteractedWithMob(Character *hero);
+void interactWithNothing(Character *hero);
 
 #endif

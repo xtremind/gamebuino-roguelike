@@ -4,10 +4,15 @@ char* text[] = { "Welcome to ", "the game"};
 
 void interact(Character *hero)
 {
+  if (hasInteractedWithFloor(hero)) {return;}
+  if (hasInteractedWithMob(hero)) {return;}
+  interactWithNothing(hero);
+}
+
+bool hasInteractedWithFloor(Character *hero){
   Floor *flr = Cache::flr;
   char tile = flr->get(hero->getNextX(), hero->getNextY());
-  if(Tiles::isSolid(tile) || flr->isOutside(hero->getNextX(), hero->getNextY()))
-  {
+  if(Tiles::isSolid(tile) || flr->isOutside(hero->getNextX(), hero->getNextY()))  {
     hero->setAction(Action::BUMP);
     if(Tiles::isInteractive(tile))
     {
@@ -38,18 +43,22 @@ void interact(Character *hero)
         break;
       }
     }
+    return true;
   }
-  else 
-  {
-    Character* mob = Cache::getMobByPos(hero->getNextX(), hero->getNextY());
-    if (mob != NULL){
-      hero->setAction(Action::BUMP);
-      //attack mob
-    }
-    else 
-    {
-      hero->setAction(Action::MOVE);
-      SoundManager::walk();
-    }
+  return false;
+}
+
+bool hasInteractedWithMob(Character *hero){
+  Character* mob = Cache::getMobByPos(hero->getNextX(), hero->getNextY());
+  if (mob != NULL){
+    hero->setAction(Action::BUMP);
+    //attack mob
+    return true;
   }
+  return false;
+}
+
+void interactWithNothing(Character *hero){
+  hero->setAction(Action::MOVE);
+  SoundManager::walk();
 }
