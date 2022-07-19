@@ -123,3 +123,7 @@ void Character::doBump(float timer_offset){
 }
 
 bool Character::needToMove() {return action != Action::NONE;}
+
+const int Character::getPower() const{ return attack;}
+void Character::beHit(const int atk){health -= atk;}
+bool Character::isAlive(){return health > 0;}

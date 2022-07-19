@@ -52,7 +52,7 @@ bool hasInteractedWithMob(Character *hero){
   Character* mob = Cache::getMobByPos(hero->getNextX(), hero->getNextY());
   if (mob != NULL){
     hero->setAction(Action::BUMP);
-    //attack mob
+    mob->beHit(hero->getPower());
     return true;
   }
   return false;

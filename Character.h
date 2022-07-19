@@ -59,6 +59,10 @@ public:
   void computeNextAction();
   void doAction(float timer_offset);
   bool needToMove();
+
+  const int getPower() const;
+  void beHit(const int atk);
+  bool isAlive();
 };
 
 #endif
