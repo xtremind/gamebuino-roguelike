@@ -53,6 +53,9 @@ bool hasInteractedWithMob(Character *hero){
   if (mob != NULL){
     hero->setAction(Action::BUMP);
     mob->beHit(hero->getPower());
+    if(!mob->isAlive()){
+      Cache::deleteMob(mob);
+    }
     return true;
   }
   return false;

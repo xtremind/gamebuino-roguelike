@@ -35,8 +35,9 @@ class Cache {
     static void addMob(Character *mob);
     static Character* getMob(int i);
     static Character* getMobByPos(int x, int y);
-    static int nbMobs();
+    static void deleteMob(Character *mob);
     static void resetMob();
+    static int nbMobs();
 };
 
 #endif

@@ -19,14 +19,13 @@ void Character::define(const CharacterType _type){
   case CharacterType::HERO:
     attack = 1;
     health = 5;
-    maxHealth = 5;
     break;
   case CharacterType::SLIME:
     attack = 1;
-    health = 1;
-    maxHealth = 1;
+    health = 2;
     break;
   }
+    maxHealth = health;
 }
 
 const int Character::getX() const {return x;}

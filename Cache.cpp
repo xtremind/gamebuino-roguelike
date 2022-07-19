@@ -74,7 +74,6 @@ Character* Cache::getMob(int pos){
   return NULL;
 }
 
-
 Character* Cache::getMobByPos(int x, int y){
   Mobs *buffer = Cache::mobs;
   while (buffer != NULL ){
@@ -89,6 +88,18 @@ Character* Cache::getMobByPos(int x, int y){
 
 int Cache::nbMobs(){
   return Cache::nbMob;
+}
+
+void Cache::deleteMob(Character *mob){
+  Mobs *buffer = Cache::mobs;
+  while (buffer != NULL ){
+    if(buffer->next->mob == mob){
+      buffer->next = buffer->next->next;
+      break;
+    }
+    buffer = buffer->next;
+  }
+
 }
 
 void Cache::resetMob(){
