@@ -15,6 +15,12 @@ enum CharacterType
 class Character
 {
 private:
+  int attack;
+  int health;
+  int maxHealth;
+
+  void define(const CharacterType _type);
+
   int x;
   int y;
   int offset_x;
