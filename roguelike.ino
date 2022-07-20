@@ -8,11 +8,12 @@ void setup()
 {
   // initialize Gamebuino
   gb.begin();
-  //_drw = &draw_start;
+  
+  // init 
   Cache::_upd = &update_game;
   Cache::_drw = &draw_game;
+  
   // init game
-
   Cache::hero = new Character(1,1,CharacterType::HERO);
   Cache::addMob(Cache::hero);
   Character* mob = new Character(9,2,CharacterType::SLIME);
@@ -27,13 +28,9 @@ void setup()
 
 void loop()
 {
-  while (!gb.update())
-    ;
-
-  // clear screen
+  gb.waitForUpdate();
   gb.display.clear();
 
-  //next_upd(_upd());
   Cache::_upd();
   Cache::_drw();
   //SerialUSB.println(Cache::getCurrentMessage()->lines[0]);
