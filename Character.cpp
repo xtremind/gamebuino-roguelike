@@ -8,6 +8,7 @@ Character::Character(const int _x, const int _y, const CharacterType _type)
   offset_y = 0;
 
   flip = 1;
+  flash = 0;
   action = Action::NONE;
   define(_type);
 }
@@ -25,7 +26,7 @@ void Character::define(const CharacterType _type){
     health = 2;
     break;
   }
-    maxHealth = health;
+  maxHealth = health;
 }
 
 const int Character::getX() const {return x;}
@@ -124,5 +125,12 @@ void Character::doBump(float timer_offset){
 bool Character::needToMove() {return action != Action::NONE;}
 
 const int Character::getPower() const{ return attack;}
-void Character::beHit(const int atk){health -= atk;}
+void Character::beHit(const int atk){
+  health -= atk;
+  flash = 10;
+}
 bool Character::isAlive(){return health > 0;}
+bool Character::isFlashed(){
+  flash = max(flash-1, 0);
+  return 0 < flash;
+}

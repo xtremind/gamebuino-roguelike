@@ -15,6 +15,7 @@ enum CharacterType
 class Character
 {
 private:
+  CharacterType type;
   int attack;
   int health;
   int maxHealth;
@@ -23,17 +24,16 @@ private:
 
   int x;
   int y;
+  int start_offset_x;
+  int start_offset_y;
   int offset_x;
   int offset_y;
 
   int flip;
-
-  int start_offset_x;
-  int start_offset_y;
+  int flash;
 
   int direction;
   Action action;
-  CharacterType type;
 
   void lookAt();
   void prepareMove();
@@ -63,6 +63,7 @@ public:
   const int getPower() const;
   void beHit(const int atk);
   bool isAlive();
+  bool isFlashed();
 };
 
 #endif

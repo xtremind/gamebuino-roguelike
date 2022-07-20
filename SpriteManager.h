@@ -38,7 +38,7 @@ class SpriteManager {
   public:
     //Characters
     static Image& getHero();
-    static Image& getSlime();
+    static Image& getSlime(bool flash);
     //Tiles
     static Image& getDoor();
     static Image& getWall();

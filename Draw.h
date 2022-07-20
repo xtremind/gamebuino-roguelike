@@ -15,7 +15,7 @@ void draw_gameover();
 
 void draw_mobs();
 void draw_mob(Character* mob);
-Image& getSprite(CharacterType type);
+Image& getSprite(Character* mob);
 
 void draw_floor();
 void draw_textboxes();

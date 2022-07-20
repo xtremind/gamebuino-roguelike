@@ -31,8 +31,12 @@ Image& SpriteManager::getHero() {
   return SpriteManager::hero;
 }
 
-Image& SpriteManager::getSlime() {
-  SpriteManager::slime = SpriteManager::getAnimatedSprite(CHARACTERS_SPRITES, SLIME_SPRITES);
+Image& SpriteManager::getSlime(bool flash) {
+  if (flash){
+    SpriteManager::slime = SpriteManager::getAnimatedSprite(CHARACTERS_SPRITES, FLASHED_SLIME_SPRITES);
+  } else {
+    SpriteManager::slime = SpriteManager::getAnimatedSprite(CHARACTERS_SPRITES, SLIME_SPRITES);
+  }
   return SpriteManager::slime;
 }
 

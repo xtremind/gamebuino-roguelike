@@ -22,16 +22,16 @@ void draw_mobs()
 }
 
 void draw_mob(Character* mob){
-  gb.display.drawImage(mob->getX() * WIDTH_BLOCK + mob->getOffsetX(), mob->getY() * HEIGHT_BLOCK + mob->getOffsetY(), getSprite(mob->getType()), mob->getFlip()*WIDTH_BLOCK, HEIGHT_BLOCK);
+  gb.display.drawImage(mob->getX() * WIDTH_BLOCK + mob->getOffsetX(), mob->getY() * HEIGHT_BLOCK + mob->getOffsetY(), getSprite(mob), mob->getFlip()*WIDTH_BLOCK, HEIGHT_BLOCK);
 }
 
-Image& getSprite(CharacterType type){
-  switch (type)
+Image& getSprite(Character* mob){
+  switch (mob->getType())
   {
   case CharacterType::HERO:
     return SpriteManager::getHero();
   case CharacterType::SLIME:
-    return SpriteManager::getSlime();
+    return SpriteManager::getSlime(mob->isFlashed());
   }
 }
 
