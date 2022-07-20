@@ -11,6 +11,8 @@ public:
   static void breakJar();
   static void openChest();
   static void walk();
+  static void attack();
+  static void hit();
 };
 
 #endif

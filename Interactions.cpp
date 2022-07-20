@@ -52,6 +52,7 @@ bool hasInteractedWithMob(Character *hero){
   Character* mob = Cache::getMobByPos(hero->getNextX(), hero->getNextY());
   if (mob != NULL){
     hero->setAction(Action::BUMP);
+    SoundManager::attack();
     mob->beHit(hero->getPower());
     if(!mob->isAlive()){
       Cache::deleteMob(mob);
