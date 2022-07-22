@@ -156,6 +156,26 @@ https://www.youtube.com/watch?v=HnY7Inp74dw&list=TLPQMzEwNTIwMjJoeOrm41Og6A&inde
 
 ([video](https://youtu.be/FvSLsmTCIO4) / [code](pico8/10_combat.lua))
 
+### Step 11 : Path Finding
+
+- [ ] MAP : put monster sprite
+- [ ] LEVEL : use monster sprite as a mob character generator at the starting game
+- [ ] LEVEL : change monster sprite by floor once generated
+- [ ] UTILS : create a function that compute distance between 2 points
+- [ ] UPDATE : create a function that will loop on all mobs
+- [ ] UPDATE : find the lower distance from mob to hero after moving
+- [ ] UPDATE : move mob depending on lowest distance
+- [ ] UPDATE : create an update mob turn function 
+- [ ] UPDATE : call the new function on update mob turn
+- [ ] UPDATE : go update mob turn once update player turn is done
+- [ ] UPDATE : go update player turn once update mob turn is done
+- [ ] UPDATE : verify that the lower distance is walkable
+- [ ] UPDATE : if the distance between mob and player is 1, attack player (BUMP + ATTACK), else move to player
+- [ ] UPDATE : add sound when been attacked
+- [ ] SPRITE : add flashed player sprite
+
+([video](https://youtu.be/qLIPY0ro5UY) / [code](pico8/11_simple_path_finding.lua))
+
 ### Step : 
 
 - [ ] 
