@@ -164,9 +164,11 @@ void Cache::updateFloats(){
     buffer->duration++;
     if(buffer->duration >= 70){
       if(buffer->previous==NULL){
+        buffer->next->previous=NULL;
         Cache::floats=buffer->next;
       } else {
         buffer->previous->next = buffer->next;
+        buffer->next->previous = buffer->previous;
       }
       Cache::nbFloat--;
     }
