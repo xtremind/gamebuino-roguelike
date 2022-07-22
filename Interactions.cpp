@@ -1,6 +1,7 @@
 #include "Interactions.h"
 
 char* text[] = { "Welcome to ", "the game"};
+char* dmgtext = "-1";
 
 void interact(Character *hero)
 {
@@ -54,6 +55,8 @@ bool hasInteractedWithMob(Character *hero){
     hero->setAction(Action::BUMP);
     SoundManager::attack();
     mob->beHit(hero->getPower());
+    //dmgtext = '-'+hero->getPower();
+    Cache::addFloat(dmgtext, mob->getX(), mob->getY());
     if(!mob->isAlive()){
       Cache::deleteMob(mob);
     }

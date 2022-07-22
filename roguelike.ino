@@ -33,6 +33,7 @@ void loop()
 
   Cache::_upd();
   Cache::_drw();
+  Cache::updateFloats();
   //SerialUSB.println(Cache::getCurrentMessage()->lines[0]);
   //SerialUSB.println(Cache::getCurrentMessage()->lines[1]);
   //SerialUSB.println(Cache::getCurrentMessage()->length);

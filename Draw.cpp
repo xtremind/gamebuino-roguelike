@@ -9,7 +9,12 @@ void draw_game()
   draw_floor();
   draw_mobs();
   draw_textboxes();
+  draw_floats();
   //draw ui
+}
+
+void draw_gameover()
+{
 }
 
 void draw_mobs()
@@ -79,11 +84,8 @@ void paintSprite(const int x, const int y, const char typeOfSprites)
   }
 }
 
-void draw_gameover()
-{
-}
 
-void  draw_textboxes(){
+void draw_textboxes(){
   Message *message = Cache::getCurrentMessage();
   //SerialUSB.println(message);
   if (message != NULL){
@@ -122,4 +124,23 @@ void draw_textbox(Message* message)
       gb.display.setCursor((gb.display.width() + message->length)/2 - 7, (gb.display.height() + message->height)/2 - 4);
       gb.display.println("A");
   }
+}
+
+void draw_floats()
+{
+  int nb = Cache::nbFloats();
+  //gb.display.print(nb);
+  for(int i = 0; i < nb; i++){
+    
+    draw_float(Cache::getFloat(i));
+  }
+}
+
+void draw_float(Float* flt){
+  //gb.display.setCursor(0, 0);
+  //gb.display.print(flt->y);
+  gb.display.setColor(ORANGE);
+  gb.display.setCursor(flt->x, flt->y);
+  gb.display.println(flt->text);
+  gb.display.setColor(WHITE);
 }

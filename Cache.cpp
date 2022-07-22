@@ -92,9 +92,14 @@ int Cache::nbMobs(){
 
 void Cache::deleteMob(Character *mob){
   Mobs *buffer = Cache::mobs;
+  if(buffer->mob == mob){
+    Cache::mobs=buffer->next;
+    Cache::nbMob--;
+  }
   while (buffer != NULL ){
     if(buffer->next->mob == mob){
       buffer->next = buffer->next->next;
+      Cache::nbMob--;
       break;
     }
     buffer = buffer->next;
@@ -105,4 +110,70 @@ void Cache::deleteMob(Character *mob){
 void Cache::resetMob(){
   Cache::mobs = NULL;
   Cache::nbMob = 0;
+}
+
+//-------------- FLOAT -----------------------
+Float *Cache::floats = NULL;
+int Cache::nbFloat = 0;
+
+void Cache::addFloat(char* text, int x, int y){
+  Float *flt = new Float();
+  flt->text = text;
+  flt->x = x*WIDTH_BLOCK;
+  flt->y = y*HEIGHT_BLOCK;
+  flt->offset_y = y*HEIGHT_BLOCK - 10;
+  flt->duration = 0;
+
+  if(Cache::floats == NULL) {
+    flt->previous = NULL;
+    Cache::floats = flt;
+    Cache::nbFloat = 1;
+    return;
+  }
+
+  Float *buffer = Cache::floats;
+
+  while (buffer->next != NULL){
+    buffer = buffer->next;
+  }
+
+  buffer->next = flt;
+  flt->previous = buffer;
+  Cache::nbFloat++;
+}
+
+Float* Cache::getFloat(int pos){
+  int i = 0;
+  Float *buffer = Cache::floats;
+  while (buffer != NULL && i <= pos ){
+    if (i == pos){
+      return buffer;
+    }
+    buffer = buffer->next;
+    i++;
+  }
+
+  return NULL;
+}
+
+void Cache::updateFloats(){
+  Float *buffer = Cache::floats;
+
+  while (buffer != NULL ){
+    buffer->y += (buffer->offset_y - buffer->y)/10;
+    buffer->duration++;
+    if(buffer->duration >= 70){
+      if(buffer->previous==NULL){
+        Cache::floats=buffer->next;
+      } else {
+        buffer->previous->next = buffer->next;
+      }
+      Cache::nbFloat--;
+    }
+    buffer = buffer->next;
+  }
+}
+
+int Cache::nbFloats(){
+  return Cache::nbFloat;
 }
