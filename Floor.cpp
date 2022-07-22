@@ -6,8 +6,7 @@ Floor::Floor()
 }
 
 // get type of sprite at coordinate {x, y}
-const char Floor::get(const int x, const int y)
-{
+const char Floor::get(const int x, const int y){
     return mapOfGame[y][x];
 }
 

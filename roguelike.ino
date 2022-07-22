@@ -16,12 +16,19 @@ void setup()
   // init game
   Cache::hero = new Character(1,1,CharacterType::HERO);
   Cache::addMob(Cache::hero);
-  Character* mob = new Character(9,2,CharacterType::SLIME);
-  Cache::addMob(mob);
-  mob = new Character(2,6,CharacterType::SLIME);
-  Cache::addMob(mob);
-  mob = new Character(2,2,CharacterType::SLIME);
-  Cache::addMob(mob);
+  
+  Character* mob = NULL;
+  //Dynamic build mob
+  Floor *flr = Cache::flr;
+  for (int y = 0; y < flr->HEIGHT_MAP; y++) {
+    for (int x = 0; x < flr->WIDTH_MAP; x++) {
+      if(flr->get(x, y) == Tiles::SLIME_TYPE) {
+        mob = new Character(x,y,CharacterType::SLIME);
+        Cache::addMob(mob);
+        flr->set(x, y, Tiles::FLOOR_TYPE);
+      }
+    }
+  }
 
   SerialUSB.begin(9600);
 }

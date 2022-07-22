@@ -15,6 +15,8 @@ class Tiles {
     static const char CLOSED_CHEST_TYPE = 'C';
     static const char OPENED_CHEST_TYPE = 'O';
 
+    static const char SLIME_TYPE = 'S';
+
     static bool isSolid(char Tile);
     static bool isInteractive(char Tile);
 };
